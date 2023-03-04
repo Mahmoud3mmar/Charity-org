@@ -46,6 +46,21 @@
    margin-bottom: 20px;
 }
 
+
+.DashBoardcontainer .content .btn{
+   display: inline-block;
+   padding:10px 30px;
+   font-size: 20px;
+   background: #333;
+   color:#fff;
+   margin:0 5px;
+   text-transform: capitalize;
+}
+
+.DashBoardcontainer .content .btn:hover{
+   background: crimson;
+}
+
 .container .content h3{
    font-size: 30px;
    color:#333;

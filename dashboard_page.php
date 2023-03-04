@@ -29,10 +29,10 @@ session_start();
    <div class="content">
       <h3>hi, <span>admin</span></h3>
       <h1>welcome <span><?php echo $_SESSION['admin_name'] ?></span></h1>
-      <!-- <p>this is an admin page</p>
-      <a href="login_form.php" class="btn">login</a>
-      <a href="register_form.php" class="btn">register</a>
-      <a href="logout.php" class="btn">logout</a> -->
+      <p>this is an admin page</p>
+      
+      <a href="adding_worker_page.php" class="btn">Add New Worker</a>
+      <!-- <a href="logout.php" class="btn">logout</a> -->
    </div>
 
 </div>
