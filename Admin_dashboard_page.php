@@ -36,7 +36,11 @@ session_start();
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 
-      <button id="show-table" class="btn">Show Table</button>
+	  <a href="Admin_Appointments.php" class="btn"> Appointments</a>
+      <!-- <a href="logout.php" class="btn">logout</a> -->
+
+
+      <button id="show-table" class="btn">Show Table </button>
       <!-- <table id="my-table" style="display:none;"> -->
       
    </div>
