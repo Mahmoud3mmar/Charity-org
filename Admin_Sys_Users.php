@@ -1,49 +1,41 @@
 <?php
 
 @include 'config.php';
+@include 'UserClass.php';
+
+
 if(isset($_POST['AddUser'])){
 
-    $name = mysqli_real_escape_string($conn, $_POST['user_name']);
-    $email = mysqli_real_escape_string($conn, $_POST['user_email']);
-    $pass = md5($_POST['user_password']);
-    $user_type = $_POST['user_type'];
  
-    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
- 
-    $result = mysqli_query($conn, $select);
- 
-    if(mysqli_num_rows($result) > 0){
- 
-       $error[] = 'user already exist!';
- 
-    }else{
-        $error[] = 'user created!';
 
-        $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-        mysqli_query($conn, $insert);
-    }
- 
+   $admin= new Admin (mysqli_real_escape_string($conn,$_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   $admin->AddUser(mysqli_real_escape_string($conn,$_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   
+
  };
 if(isset($_POST['RemoveUser'])){
 
-   $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-   $name = mysqli_real_escape_string($conn, $_POST['user_name']);
+   $admin= new Admin ( mysqli_real_escape_string($conn, $_POST['id']), mysqli_real_escape_string($conn, $_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   $admin->AddUser(mysqli_real_escape_string($conn, $_POST['id']),mysqli_real_escape_string($conn,$_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   
+
+  
 
  
-   $select = " SELECT * FROM user_form WHERE id = '$id'  ";
+   // $select = " SELECT * FROM user_form WHERE id = '$id'  ";
 
-   $result = mysqli_query($conn, $select);
+   // $result = mysqli_query($conn, $select);
 
-   if(mysqli_num_rows($result) > 0){
-      $error[] = 'user Found!----Deleted...';
+   // if(mysqli_num_rows($result) > 0){
+   //    $error[] = 'user Found!----Deleted...';
 
 
       
-      $delete = " DELETE FROM user_form WHERE id = '$id'";
-      mysqli_query($conn, $delete);
+   //    $delete = " DELETE FROM user_form WHERE id = '$id'";
+   //    mysqli_query($conn, $delete);
 
-   }
+   // }
 
 };
 
@@ -58,7 +50,8 @@ if(isset($_POST['UpdateUser'])){
    $type = mysqli_real_escape_string($conn, $_POST['user_type']);
  
    $select = " SELECT * FROM user_form WHERE id = '$id'  ";
-
+   $admin= new Admin ( mysqli_real_escape_string($conn, $_POST['id']), mysqli_real_escape_string($conn, $_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   $admin->AddUser(mysqli_real_escape_string($conn, $_POST['id']),mysqli_real_escape_string($conn,$_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
    $result = mysqli_query($conn, $select);
 
    if(mysqli_num_rows($result) > 0){
@@ -151,10 +144,10 @@ if(isset($_POST['FindUser'])){
       <input type="submit" name="UpdateUser" value="Update User" class="form-btn">
       <input type="submit" name="FindUser" value="Find User" class="form-btn">
       <select name="user_type">
-         <option value="user">receptionist</option>
-         <option value="admin">Accountant</option>
-         <option value="admin">Pharmacist</option>
-         <option value="admin">WareHouse Manager</option>
+         <option value="receptionist">receptionist</option>
+         <option value="Accountant">Accountant</option>
+         <option value="Pharmacist">Pharmacist</option>
+         <option value="WareHouse Manager">WareHouse Manager</option>
 
 
 

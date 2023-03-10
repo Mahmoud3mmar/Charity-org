@@ -1,11 +1,11 @@
 <?php
 
 @include 'config.php';
-
+@include 'User.php';
 session_start();
 
 if(isset($_POST['submit'])){
-
+   
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = md5($_POST['password']);
    $user_type = $_POST['user_type'];

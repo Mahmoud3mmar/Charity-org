@@ -44,6 +44,10 @@ session_start();
 
 
 	  <a href="Admin_Orphans.php" class="btn"> Orphans</a>
+
+
+	  <a href="Admin_transactions_page.php" class="btn"> Transactions</a>
+
    </div>
 
 
