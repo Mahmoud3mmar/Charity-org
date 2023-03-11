@@ -27,27 +27,28 @@ session_start();
 
    <div class="content">
 
-      <h3>hi, <span>admin</span></h3>
-      <h1>welcome <span><?php echo $_SESSION['admin_name'] ?></span></h1>
+      <h3>hi, <span>Receptionist</span></h3>
+      <h1>welcome <span><?php echo $_SESSION['user_name'] ?></span></h1>
       <br></br>
       
-      <a href="Admin_Volunteers.php" class="btn"> Volunteers</a>
+      <a href="" class="btn"> Check For Emails</a>
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 
-	  <a href="Admin_Appointments.php" class="btn"> Appointments</a>
+	  <a href="" class="btn"> Send Emails<a>
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 
-	  <a href="Admin_Sys_Users.php" class="btn"> System Users</a>
+	  <a href="" class="btn"> Send Appointments Notifications</a>
 
 
 
-	  <a href="Admin_Orphans.php" class="btn"> Orphans</a>
+	  <a href="" class="btn"> ++++++++</</a>
 
 
-	  <a href="Admin_transactions_page.php" class="btn"> Transactions</a>
+	  <a href="" class="btn"> ++++++++</a>           
      <a href="logout.php" class="btn">logout</a>
+
 
 
    </div>

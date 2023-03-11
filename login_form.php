@@ -1,38 +1,16 @@
 <?php
 
 @include 'config.php';
-@include 'User.php';
+@include 'LoginClass.php';
+
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_POST['Login'])){
+
+   $login= new Login (mysqli_real_escape_string($conn,$_POST['email']),md5($_POST['password']),$_POST['user_type']);
+   $login->LoggingIn(mysqli_real_escape_string($conn,$_POST['email']),md5($_POST['password']),$_POST['user_type']);
    
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $user_type = $_POST['user_type'];
-
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-
-   $result = mysqli_query($conn, $select);
-
-   if(mysqli_num_rows($result) > 0){
-
-      $row = mysqli_fetch_array($result);
-
-      if($row['user_type'] == 'admin'){
-
-         $_SESSION['admin_name'] = $row['name'];
-         header('location:admin_page.php');
-
-      }elseif($row['user_type'] == 'user'){
-
-         $_SESSION['user_name'] = $row['name'];
-         header('location:user_page.php');
-
-      }
-     
-   }else{
-      $error[] = 'incorrect email or password!';
-   }
+   
 
 };
 ?>
@@ -64,7 +42,7 @@ if(isset($_POST['submit'])){
       ?>
       <input type="email" name="email" required placeholder="enter your email">
       <input type="password" name="password" required placeholder="enter your password">
-      <input type="submit" name="submit" value="login now" class="form-btn">
+      <input type="submit" name="Login" value="login now" class="form-btn">
       <!-- <p>don't have an account? <a href="register_form.php">register now</a></p> -->
    </form>
 

@@ -1,6 +1,8 @@
 <?php
 
 @include 'config.php';
+@include 'LoginClass.php';
+
 
 session_start();
 
@@ -27,11 +29,10 @@ if(!isset($_SESSION['user_name'])){
 <div class="container">
 
    <div class="content">
-      <h3>hi, <span>user</span></h3>
+      <h3>hi, <span>Receptionist</span></h3>
       <h1>welcome <span><?php echo $_SESSION['user_name'] ?></span></h1>
-      <p>this is an user page</p>
-      <a href="login_form.php" class="btn">login</a>
-      <a href="register_form.php" class="btn">register</a>
+      <p>this is an Receptionist page</p>
+      <a href="Receptionist_DashBoard.php" class="btn">DashBoard</a>
       <a href="logout.php" class="btn">logout</a>
    </div>
 
