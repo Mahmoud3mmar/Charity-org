@@ -31,7 +31,7 @@ session_start();
       <h1>welcome <span><?php echo $_SESSION['admin_name'] ?></span></h1>
       <br></br>
       
-      <a href="workers_page.php" class="btn"> Worker</a>
+      <a href="Admin_Volunteers.php" class="btn"> Volunteers</a>
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 

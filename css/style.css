@@ -164,7 +164,7 @@
    color:crimson;
 }
 
-.form-container form .error-msg{
+.error-msg{
    margin:10px 0;
    display: block;
    background: crimson;
@@ -174,5 +174,4 @@
    padding:10px;
 }
 /*                                                                                             */
-
 
