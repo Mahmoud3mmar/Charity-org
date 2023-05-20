@@ -1,29 +1,30 @@
 <?php
-session_start();
+
+
+
+// Includes the configuration file and the ReceptionistClass file
 
 @include 'config.php';
-@include 'AdminClass.php';
+@include 'ReceptionistClass.php';
 
-if(isset($_POST['Show-Table'])){
+// Checks if the 'BookRoom' button was clicked
 
+if(isset($_POST['SendAppointments'])){
+
+ 
+   // Creates a new Admin object with the user input values and calls the 'AddUser' method
+
+   $Receptionist = new Receptionist('','','' ,'' ,'' );
+   $Receptionist->SendAppointments(mysqli_real_escape_string($conn,$_POST['id']), mysqli_real_escape_string($conn,$_POST['Category']),mysqli_real_escape_string($conn,$_POST['date']),mysqli_real_escape_string($conn,$_POST['message']));
    
+}
 
-	
 
-	$admin= new Admin ('','','','');
-	$admin->ShowTransactions('','','','','');
-
-};
 
 
 
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +46,7 @@ if(isset($_POST['Show-Table'])){
       <?php
     
       ?>
-     
-
-	 <!-- <input type="text" name="id" required placeholder="enter ID">
+      <input type="text" name="id" required placeholder="enter ID">
       <select name="Category">
          <option value="VIP">VIP</option>
          <option value="meeting">meeting</option>
@@ -59,10 +58,17 @@ if(isset($_POST['Show-Table'])){
       <input type="date" name="date" required placeholder="enter date">
       <input type="text" name="message" required placeholder="enter your message">
 
-       -->
+      
+      
+      
+ 
+      <input type="submit" name="SendAppointments" value="Send Appointments" class="form-btn">
+     
+    
 
 
-      <input type="submit" name="Show-Table" value="Show Appointments" class="form-btn">
+      </select>
+
       
    </form>
 

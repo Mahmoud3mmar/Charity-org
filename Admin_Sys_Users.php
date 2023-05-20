@@ -54,30 +54,9 @@ if(isset($_POST['UpdateUser'])){
 
 if(isset($_POST['FindUser'])){
 
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
- 
-    $name = mysqli_real_escape_string($conn, $_POST['user_name']);
- 
-    $type = mysqli_real_escape_string($conn, $_POST['user_type']);
-  
-    $select = " SELECT * FROM user_form WHERE id = '$id'  ";
- 
-    $result = mysqli_query($conn, $select);
- 
-    if(mysqli_num_rows($result) > 0){
-       $error[] = 'user Found!';
- 
-  
-       
-       // $Update = " UPDATE  workers SET id = '$id' , worker_name = '$name' ,worker_type = '$type' WHERE id = '$id' ";
-      // mysqli_query($conn, $Update);
-      // header('location:dashboard_page.php');
- 
-    }else{
-       
-       $error[] = 'user Not Found!';
- 
-    }
+   $admin= new Admin (mysqli_real_escape_string($conn, $_POST['id']), mysqli_real_escape_string($conn, $_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+   $admin->FindUser(mysqli_real_escape_string($conn, $_POST['id']),mysqli_real_escape_string($conn,$_POST['user_name']), mysqli_real_escape_string($conn,$_POST['user_email']),md5($_POST['user_password']),$_POST['user_type']);
+
  
  };
 

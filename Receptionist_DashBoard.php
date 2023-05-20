@@ -35,18 +35,17 @@ session_start();
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 
-	  <a href="" class="btn"> Send Emails<a>
+	  <a href="Receptionist_SendMails_Page.php" class="btn"> Send Emails<a>
       <!-- <a href="logout.php" class="btn">logout</a> -->
 
 
-	  <a href="" class="btn"> Send Appointments Notifications</a>
+	  <a href="Receptionist_SendAppointments_Page.php" class="btn"> Send Appointments Notifications</a>
 
 
 
-	  <a href="" class="btn"> ++++++++</</a>
+	  <a href="Receptionist_BookRooms_Page.php" class="btn"> Book Rooms </a>
 
 
-	  <a href="" class="btn"> ++++++++</a>           
      <a href="logout.php" class="btn">logout</a>
 
 

@@ -82,7 +82,15 @@ class Login {
               $_SESSION['user_name'] = $row['name'];
               header('location:Receptionist_page.php');
      
+           }elseif($row['user_type'] == 'WareHouse Manager'){
+            $_SESSION['user_name'] = $row['name'];
+            header('location:WareHouseManager_Page.php');
+
+           }elseif($row['user_type'] == 'Accountant'){
+            $_SESSION['user_name'] = $row['name'];
+            header('location:Accountant_page.php');
            }
+            
         //    elseif($row['user_type'] == 'Accountant'){
      
         //     $_SESSION['user_name'] = $row['name'];

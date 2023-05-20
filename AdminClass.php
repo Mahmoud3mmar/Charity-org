@@ -6,7 +6,7 @@
 
 // include config file and UserClass file
 
-@include 'config.php';
+include 'config1.php';
 @include 'UserClass.php';
  
 
@@ -17,6 +17,11 @@
 
  class Admin extends User {
   
+    
+
+ 
+    
+
     // method to add a new user to the user database
 
   public function AddUser($name,$email, $pass, $user_type) {
@@ -49,6 +54,8 @@
         // insert the new user into the user database and display a success message
 
          $error[] = 'user created!';
+           
+
          if(isset($error)){
             foreach($error as $error){
                 echo '<span class="error-msg">'.$error.'</span>';
@@ -154,6 +161,8 @@
 
 
 
+
+
   }
 
 
@@ -161,6 +170,76 @@
 
 
 
+  public function FindUser($id,$name,$email, $pass, $user_type){
+    // establish database connection
+
+    $conn = mysqli_connect('localhost','root','','user_db');
+    // if the 'UpdateUser' button is clicked
+
+    if(isset($_POST['FindUser'])){
+
+      
+          // select user with matching id from the user database
+
+      $select = " SELECT * FROM user_form WHERE id = '$id'  ";
+      $result = mysqli_query($conn, $select);
+         // if the user is found, update the user in the user database and display a success message
+
+      if(mysqli_num_rows($result) > 0){
+         $error[] = 'user Found!-...';
+         echo '<table>';
+         echo '<tr>';
+         echo '<th>ID</th>';
+         echo '<th>Name</th>';
+         echo '<th>Email</th>';
+         echo '<th>Password</th>';
+         echo '<th>User Type</th>';
+         echo '</tr>';
+         
+         while($row = $result->fetch_assoc()) {
+           echo '<tr>';
+           echo '<td>' . $row['id'] . '</td>';
+           echo '<td>' . $row['name'] . '</td>';
+           echo '<td>' . $row['email'] . '</td>'; 
+           echo '<td>' . $row['password'] . '</td>'; 
+           echo '<td>' . $row['user_type'] . '</td>';    
+           echo '</tr>';
+         }
+         
+         echo '</table>';
+   
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+         
+        //  $Update = " UPDATE  user_form SET id = '$id' , name = '$name' ,email = '$email',password='$pass',user_type = '$user_type' WHERE id = '$id'";
+        //  mysqli_query($conn, $Update);
+   
+      }else{
+        $error[] = 'user Not Found!----Updated...';
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+   
+      }
+   
+   };
+   
+
+
+
+
+
+
+
+
+
+
+  }
   
 
 
@@ -304,7 +383,77 @@
 
 
 
+  public function FindOrphan($id,$name,$age, $register, $room){
+    // establish database connection
 
+    $conn = mysqli_connect('localhost','root','','user_db');
+    // if the 'UpdateUser' button is clicked
+
+    if(isset($_POST['FindOrphan'])){
+
+      
+          // select user with matching id from the user database
+
+      $select = " SELECT * FROM oprhans WHERE id = '$id'  ";
+      $result = mysqli_query($conn, $select);
+         // if the user is found, update the user in the user database and display a success message
+
+      if(mysqli_num_rows($result) > 0){
+         $error[] = 'Orphan Found!...';
+         echo '<table>';
+         echo '<tr>';
+         echo '<th>ID</th>';
+         echo '<th>Name</th>';
+         echo '<th>Age</th>';
+         echo '<th>Register</th>';
+         echo '<th>Room</th>';
+         echo '</tr>';
+         
+         while($row = $result->fetch_assoc()) {
+           echo '<tr>';
+           echo '<td>' . $row['id'] . '</td>';
+           echo '<td>' . $row['name'] . '</td>';
+           echo '<td>' . $row['age'] . '</td>'; 
+           echo '<td>' . $row['came_at'] . '</td>'; 
+           echo '<td>' . $row['room_id'] . '</td>';    
+           echo '</tr>';
+         }
+         
+         echo '</table>';
+   
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+         
+        //  $Update = " UPDATE  user_form SET id = '$id' , name = '$name' ,email = '$email',password='$pass',user_type = '$user_type' WHERE id = '$id'";
+        //  mysqli_query($conn, $Update);
+   
+      }else{
+        $error[] = 'user Not Found!----Updated...';
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+   
+      }
+   
+   };
+   
+
+
+
+
+
+
+
+
+
+
+  }
+  
 
 
 
@@ -450,5 +599,286 @@
   }
 
 
+  
+  public function FindVolunteer($id,$name, $age, $phone,$type){
+    // establish database connection
+
+    $conn = mysqli_connect('localhost','root','','user_db');
+    // if the 'UpdateUser' button is clicked
+
+    if(isset($_POST['FindVolunteer'])){
+
+      
+          // select user with matching id from the user database
+
+      $select = " SELECT * FROM volunteers WHERE id = '$id'  ";
+      $result = mysqli_query($conn, $select);
+         // if the user is found, update the user in the user database and display a success message
+
+      if(mysqli_num_rows($result) > 0){
+         $error[] = 'volunteer Found!...';
+         echo '<table>';
+         echo '<tr>';
+         echo '<th>ID</th>';
+         echo '<th>Name</th>';
+         echo '<th>Age</th>';
+         echo '<th>Phone</th>';
+         echo '<th>Volunteer Type</th>';
+         echo '</tr>';
+         
+         while($row = $result->fetch_assoc()) {
+           echo '<tr>';
+           echo '<td>' . $row['id'] . '</td>';
+           echo '<td>' . $row['volunteer_name'] . '</td>';
+           echo '<td>' . $row['volunteer_age'] . '</td>'; 
+           echo '<td>' . $row['volunteer_phone'] . '</td>'; 
+           echo '<td>' . $row['volunteer_type'] . '</td>';    
+           echo '</tr>';
+         }
+         
+         echo '</table>';
+   
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+         
+        
+   
+      }else{
+        $error[] = 'volunteer Not Found!';
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+   
+      }
+   
+   };
+   
+
+
+
+
+
+
+
+
+
+   if(isset($_POST['FindVolunteer'])){
+
+      
+    // select user with matching id from the user database
+
+$select = " SELECT * FROM volunteers WHERE id = '$id'  ";
+$result = mysqli_query($conn, $select);
+   // if the user is found, update the user in the user database and display a success message
+
+if(mysqli_num_rows($result) > 0){
+   $error[] = 'volunteer Found!...';
+   echo '<table>';
+   echo '<tr>';
+   echo '<th>ID</th>';
+   echo '<th>Name</th>';
+   echo '<th>Age</th>';
+   echo '<th>Phone</th>';
+   echo '<th>Volunteer Type</th>';
+   echo '</tr>';
+   
+   while($row = $result->fetch_assoc()) {
+     echo '<tr>';
+     echo '<td>' . $row['id'] . '</td>';
+     echo '<td>' . $row['volunteer_name'] . '</td>';
+     echo '<td>' . $row['volunteer_age'] . '</td>'; 
+     echo '<td>' . $row['volunteer_phone'] . '</td>'; 
+     echo '<td>' . $row['volunteer_type'] . '</td>';    
+     echo '</tr>';
+   }
+   
+   echo '</table>';
+
+  if(isset($error)){
+      foreach($error as $error){
+          echo '<span class="error-msg">'.$error.'</span>';
+      };
+  };   
+   
+  
+
+}else{
+  $error[] = 'volunteer Not Found!';
+  if(isset($error)){
+      foreach($error as $error){
+          echo '<span class="error-msg">'.$error.'</span>';
+      };
+  };   
+
+}
+
+};
+
+
+  }
+  
+
+
+
+
+
+  public function ShowAppointments($id,$category, $date,$Message){
+    // establish database connection
+
+    $conn = mysqli_connect('localhost','root','','user_db');
+    // if the 'UpdateUser' button is clicked
+
+    if(isset($_POST['Show-Table'])){
+
+      
+          // select user with matching id from the user database
+
+      $select = " SELECT * FROM appointments  ";
+      $result = mysqli_query($conn, $select);
+         // if the user is found, update the user in the user database and display a success message
+
+      if(mysqli_num_rows($result) > 0){
+         $error[] = 'Appointments...';
+         echo '<table>';
+         echo '<tr>';
+         echo '<th>ID</th>';
+         echo '<th>Category</th>';
+         echo '<th>DATE</th>';
+         echo '<th>Message</th>';
+         
+         echo '</tr>';
+         
+         while($row = $result->fetch_assoc()) {
+           echo '<tr>';
+           echo '<td>' . $row['id'] . '</td>';
+           echo '<td>' . $row['category'] . '</td>';
+           echo '<td>' . $row['date'] . '</td>'; 
+           echo '<td>' . $row['Message'] . '</td>'; 
+              
+           echo '</tr>';
+         }
+         
+         echo '</table>';
+   
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+         
+        
+   
+      }else{
+        $error[] = 'Appointments Not Found!';
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+   
+      }
+   
+   };
+   
+
+
+
+
+
+
+
+
+
+ 
+
+
+  }
+  
+
+
+
+
+  
+  public function ShowTransactions($id,$payment_type,$value,$date,$donner_name){
+
+    // establish database connection
+
+    $conn = mysqli_connect('localhost','root','','user_db');
+    // if the 'UpdateUser' button is clicked
+
+    if(isset($_POST['Show-Table'])){
+
+      
+          // select user with matching id from the user database
+
+      $select = " SELECT * FROM transactions  ";
+      $result = mysqli_query($conn, $select);
+         // if the user is found, update the user in the user database and display a success message
+
+      if(mysqli_num_rows($result) > 0){
+         $error[] = 'transactions...';
+         echo '<table>';
+         echo '<tr>';
+         echo '<th>ID</th>';
+         echo '<th>payment type</th>';
+         echo '<th>Value</th>';
+         echo '<th>DATE</th>';
+         echo '<th>Donner Name</th>';
+
+         echo '</tr>';
+         
+         while($row = $result->fetch_assoc()) {
+           echo '<tr>';
+           echo '<td>' . $row['id'] . '</td>';
+           echo '<td>' . $row['payment_type'] . '</td>';
+           echo '<td>' . $row['value'] . '</td>'; 
+           echo '<td>' . $row['date'] . '</td>'; 
+           echo '<td>' . $row['donner_name'] . '</td>'; 
+              
+           echo '</tr>';
+         }
+         
+         echo '</table>';
+   
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+         
+        
+   
+      }else{
+        $error[] = 'transactions Not Found!';
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };   
+   
+      }
+   
+   };
+   
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    }
+    
  }
 ?>

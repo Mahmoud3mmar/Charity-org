@@ -53,28 +53,11 @@ if(isset($_POST['UpdateOrphan'])){
 // If the "FindOrphan" button is clicked, retrieve the input values and perform a search in the "orphans" table
 
 if(isset($_POST['FindOrphan'])){
-    $id = mysqli_real_escape_string($conn, $_POST['orphan_id']);
-    $name = mysqli_real_escape_string($conn, $_POST['orphan_name']);
-    $age = mysqli_real_escape_string($conn, $_POST['orphan_age']);
-    $register = mysqli_real_escape_string($conn, $_POST['orphan_register_date']);
-    $room = mysqli_real_escape_string($conn, $_POST['orphan_room']);
-  
-    $select = " SELECT * FROM oprhans WHERE id = '$id'  ";
- 
-    $result = mysqli_query($conn, $select);
- 
-    if(mysqli_num_rows($result) > 0){
-       $error[] = 'Orphan Found!';
- 
-  
-       
    
- 
-    }else{
-       
-       $error[] = 'Orphan Not Found!';
- 
-    }
+   
+    $admin= new Admin (mysqli_real_escape_string($conn, $_POST['orphan_id']), mysqli_real_escape_string($conn, $_POST['orphan_name']), mysqli_real_escape_string($conn,$_POST['orphan_age']),mysqli_real_escape_string($conn, $_POST['orphan_register_date']),mysqli_real_escape_string($conn, $_POST['orphan_room']));
+   $admin->FindOrphan(mysqli_real_escape_string($conn, $_POST['orphan_id']), mysqli_real_escape_string($conn, $_POST['orphan_name']), mysqli_real_escape_string($conn,$_POST['orphan_age']),mysqli_real_escape_string($conn, $_POST['orphan_register_date']),mysqli_real_escape_string($conn, $_POST['orphan_room']));
+
  
  };
 

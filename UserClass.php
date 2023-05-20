@@ -5,7 +5,8 @@
 // Include the database configuration file
 
 @include 'config.php';
- 
+@include 'DataBaseClass.php';
+
 // Define the User class
 
 class User {
@@ -17,6 +18,8 @@ class User {
   public $email;
   public $pass;
   public $user_type;
+
+  
   // Constructor method to set initial values for the properties
 
   public function __construct($id,$email, $pass, $user_type) {
@@ -68,6 +71,8 @@ class User {
   }
 
 
+
+ 
 }
 
 
